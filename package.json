@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
-    "lint": "eslint custom-jquery.test.js"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",

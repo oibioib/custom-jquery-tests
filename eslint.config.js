@@ -1,29 +1,25 @@
-const globals = require('globals');
-const pluginJs = require('@eslint/js');
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
 
 /** @type {import('eslint').Linter.Config[]} */
-
-const loadConfig = async () => {
-  const stylistic = await import('@stylistic/eslint-plugin');
-
-  return [
-    {
-      plugins: {
-        '@stylistic': stylistic.default,
-      },
-      languageOptions: {
-        parserOptions: {
-          ecmaVersion: 6,
-        },
-        globals: Object.assign({}, globals.browser, globals.node, globals.jest),
-      },
-      rules: {
-        '@stylistic/indent': ['error', 2, { SwitchCase: 1 }],
-        '@stylistic/semi': ['error', 'always'],
-      },
+const config = [
+  {
+    plugins: {
+      '@stylistic': stylistic,
     },
-    pluginJs.configs.recommended,
-  ];
-};
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+      },
+      globals: { ...globals.browser, ...globals.node, ...globals.jest },
+    },
+    rules: {
+      '@stylistic/indent': ['error', 2, { SwitchCase: 1 }],
+      '@stylistic/semi': ['error', 'always'],
+    },
+  },
+  pluginJs.configs.recommended,
+];
 
-module.exports = loadConfig();
+export default config;

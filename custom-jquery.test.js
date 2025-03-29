@@ -82,7 +82,7 @@ describe('methods', () => {
 
     it('this must be pointed on current html element', () => {
       const $main = $('main');
-   
+
       for (let i = 0; i < $main.length; i++) {
         $main[i].classList.add(`example${i}`);
       }
